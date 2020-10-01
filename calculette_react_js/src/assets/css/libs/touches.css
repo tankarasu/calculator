@@ -1,0 +1,48 @@
+.touch {
+  border-radius: 5px;
+  margin: 5px;
+  padding-top: 5px;
+  width: 55px;
+  height: 40px;
+  font-family: "Lato", sans-serif;
+  font-size: 30px;
+  border: 1px solid #efeeee80;
+  text-align: center;
+}
+
+.numericTouch {
+  border-radius: 5px;
+  color: #efeeee;
+  background-color: #707070;
+}
+
+.operandTouch {
+  border-radius: 5px;
+  color: #dbb38d;
+  background-color: #4e4949;
+}
+
+.memoricTouch {
+  border-radius: 5px;
+  font-size: 25px;
+  color: #efeeee;
+  background-color: #333333;
+}
+
+.equalTouch {
+  border-radius: 5px;
+  margin: 5px;
+  font-family: "Lato", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  border: 1px solid #efeeee80;
+  color: #efeeee;
+  background-color: #333333;
+}
+
+.ligne {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

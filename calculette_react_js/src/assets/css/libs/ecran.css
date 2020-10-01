@@ -1,0 +1,10 @@
+.ecran {
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+  color: aliceblue;
+  background-color: #3e4163;
+  text-align: right;
+}
