@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./assets/css/app.css";
 import Ecran from "./components/Ecran";
+import EqualTouch from "./components/EqualTouch";
+import NumericTouch from "./components/NumericTouch";
+import OperandTouch from "./components/OperandTouch";
 import Touche from "./components/Touche";
 
 function App() {
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState("0");
   return (
     <div className="App">
       <div className="calculette">
@@ -16,47 +19,119 @@ function App() {
             <Touche
               value="M+"
               cName="touch memoricTouch"
-              functionnalite={example}
+              functionnalite={memoryPlus}
             />
-            <Touche value="M-" cName="touch memoricTouch" />
-            <Touche value="MR" cName="touch memoricTouch" />
-            <Touche value="MC" cName="touch memoricTouch" />
+            <Touche
+              value="M-"
+              cName="touch memoricTouch"
+              functionnalite={memoryMinus}
+            />
+            <Touche
+              value="MR"
+              cName="touch memoricTouch"
+              functionnalite={memoryRead}
+            />
+            <Touche
+              value="MC"
+              cName="touch memoricTouch"
+              functionnalite={memoryClear}
+            />
           </div>
           <div className="ligne">
-            <Touche value={7} cName="touch numericTouch" />
-            <Touche value={8} cName="touch numericTouch" />
-            <Touche value={9} cName="touch numericTouch" />
-            <Touche value="/" cName="touch operandTouch" />
+            <NumericTouch value={7} functionnalite={insertNumber} />
+            <NumericTouch value={8} functionnalite={insertNumber} />
+            <NumericTouch value={9} functionnalite={insertNumber} />
+            <OperandTouch
+              value="/"
+              cName="touch operandTouch"
+              functionnalite={divideNumber}
+            />
           </div>
           <div className="ligne">
-            <Touche value={4} cName="touch numericTouch" />
-            <Touche value={5} cName="touch numericTouch" />
-            <Touche value={6} cName="touch numericTouch" />
-            <Touche value="*" cName="touch operandTouch" />
+            <NumericTouch value={4} functionnalite={insertNumber} />
+            <NumericTouch value={5} functionnalite={insertNumber} />
+            <NumericTouch value={6} functionnalite={insertNumber} />
+            <OperandTouch
+              value="*"
+              cName="touch operandTouch"
+              functionnalite={multiplyNumber}
+            />
           </div>
           <div className="ligne">
-            <Touche value={1} cName="touch numericTouch" />
-            <Touche value={2} cName="touch numericTouch" />
-            <Touche value={3} cName="touch numericTouch" />
-            <Touche value="-" cName="touch operandTouch" />
+            <NumericTouch value={1} functionnalite={insertNumber} />
+            <NumericTouch value={2} functionnalite={insertNumber} />
+            <NumericTouch value={3} functionnalite={insertNumber} />
+            <OperandTouch
+              value="-"
+              cName="touch operandTouch"
+              functionnalite={substractNumber}
+            />
           </div>
           <div className="ligne">
-            <Touche value="-/" cName="touch numericTouch" />
-            <Touche value={0} cName="touch numericTouch" />
-            <Touche value="." cName="touch numericTouch" />
-            <Touche value="+" cName="touch operandTouch" />
+            <NumericTouch value="-/" functionnalite={negativeNumber} />
+            <NumericTouch value={0} functionnalite={insertNumber} />
+            <NumericTouch value="." functionnalite={commaNumber} />
+            <OperandTouch
+              value="+"
+              cName="touch operandTouch"
+              functionnalite={addNumber}
+            />
           </div>
           <div className="total">
-            <Touche value="=" cName="equalTouch" />
+            <EqualTouch value="=" functionnalite={equalResult} />
           </div>
         </div>
       </div>
     </div>
   );
-}
+  function insertNumber(e) {
+    let value = e.target.textContent;
+    setResult(result + value);
+  }
 
-function example() {
-  console.log("hello");
+  function addNumber(e) {
+    console.log(e.target.textContent);
+  }
+
+  function substractNumber(e) {
+    console.log(e.target.textContent);
+  }
+
+  function divideNumber(e) {
+    console.log(e.target.textContent);
+  }
+
+  function multiplyNumber(e) {
+    console.log(e.target.textContent);
+  }
+
+  function memoryPlus(e) {
+    console.log(e.target.textContent);
+  }
+
+  function memoryMinus(e) {
+    console.log(e.target.textContent);
+  }
+
+  function memoryRead(e) {
+    console.log(e.target.textContent);
+  }
+
+  function memoryClear(e) {
+    console.log(e.target.textContent);
+  }
+
+  function equalResult(e) {
+    console.log(e.target.textContent);
+  }
+
+  function negativeNumber(e) {
+    console.log(e.target.textContent);
+  }
+
+  function commaNumber(e) {
+    console.log(e.target.textContent);
+  }
 }
 
 export default App;
