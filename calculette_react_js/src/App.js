@@ -6,13 +6,19 @@ import MemoryTouch from "./components/MemoryTouch";
 import NumericTouch from "./components/NumericTouch";
 import OperandTouch from "./components/OperandTouch";
 
+let firstOperand = true;
+
 function App() {
+  const [displayToScreen, setDisplayToScreen] = useState("0");
   const [result, setResult] = useState("0");
+  const [computedOperand, setComputedOperand] = useState(0);
+  const [operator, setOperator] = useState("");
+
   return (
     <div className="App">
       <div className="calculette">
         <div className="ecran">
-          <Ecran result={result} />
+          <Ecran displayToScreen={displayToScreen} />
         </div>
         <div className="touches">
           <div className="ligne">
@@ -40,7 +46,7 @@ function App() {
             <OperandTouch value="-" functionnalite={substractNumber} />
           </div>
           <div className="ligne">
-            <NumericTouch value="-/" functionnalite={negativeNumber} />
+            <NumericTouch value="-/_" functionnalite={negativeNumber} />
             <NumericTouch value={0} functionnalite={insertNumber} />
             <NumericTouch value="." functionnalite={commaNumber} />
             <OperandTouch value="+" functionnalite={addNumber} />
@@ -48,17 +54,35 @@ function App() {
           <div className="total">
             <EqualTouch value="=" functionnalite={equalResult} />
           </div>
+          <div className="test">Computed Operand {computedOperand}</div>
+          {/** to delete */}
+          <div className="test">
+            Operator {operator} {firstOperand ? "true" : "false"}
+          </div>
+          {/** to delete */}
+          <div className="test">Result {result}</div>
+          {/** to delete */}
         </div>
       </div>
     </div>
   );
   function insertNumber(e) {
     let value = e.target.textContent;
-    setResult(result + value);
+    setDisplayToScreen((displayToScreen + value) * 1);
+    console.log(displayToScreen.length);
   }
 
   function addNumber(e) {
-    console.log(e.target.textContent);
+    if (firstOperand) {
+      firstOperand = false;
+      setResult(displayToScreen);
+      setDisplayToScreen("0");
+      setOperator("+");
+    } else {
+      setResult(result + displayToScreen);
+      setDisplayToScreen("0");
+      setOperator("+");
+    }
   }
 
   function substractNumber(e) {
@@ -90,10 +114,12 @@ function App() {
   }
 
   function equalResult(e) {
-    console.log(e.target.textContent);
+    firstOperand = true;
+    setDisplayToScreen(eval(`${result}${operator}${displayToScreen}`));
   }
 
   function negativeNumber(e) {
+    setDisplayToScreen(displayToScreen * -1);
     console.log(e.target.textContent);
   }
 

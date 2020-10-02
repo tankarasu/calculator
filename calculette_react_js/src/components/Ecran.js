@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Ecran({result}) {
-  return <div className="result"> {result} </div>;
+export default function Ecran({displayToScreen}) {
+  return <div className="result"> {displayToScreen} </div>;
 }
