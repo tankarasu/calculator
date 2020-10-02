@@ -11,8 +11,8 @@ let firstOperand = true;
 function App() {
   const [displayToScreen, setDisplayToScreen] = useState("0");
   const [result, setResult] = useState("0");
-  const [computedOperand, setComputedOperand] = useState(0);
   const [operator, setOperator] = useState("");
+  const [numberInMemory, setNumberInMemory] = useState(0);
 
   return (
     <div className="App">
@@ -54,14 +54,6 @@ function App() {
           <div className="total">
             <EqualTouch value="=" functionnalite={equalResult} />
           </div>
-          <div className="test">Computed Operand {computedOperand}</div>
-          {/** to delete */}
-          <div className="test">
-            Operator {operator} {firstOperand ? "true" : "false"}
-          </div>
-          {/** to delete */}
-          <div className="test">Result {result}</div>
-          {/** to delete */}
         </div>
       </div>
     </div>
@@ -69,7 +61,6 @@ function App() {
   function insertNumber(e) {
     let value = e.target.textContent;
     setDisplayToScreen((displayToScreen + value) * 1);
-    console.log(displayToScreen.length);
   }
 
   function addNumber() {
@@ -111,32 +102,36 @@ function App() {
     }
   }
 
-  function multiplyNumber(e) {if (firstOperand) {
-    firstOperand = false;
-    setResult(displayToScreen);
-    setDisplayToScreen("0");
-    setOperator("*");
-  } else {
-    setResult(result * displayToScreen);
-    setDisplayToScreen("0");
-    setOperator("*");
-  }
+  function multiplyNumber(e) {
+    if (firstOperand) {
+      firstOperand = false;
+      setResult(displayToScreen);
+      setDisplayToScreen("0");
+      setOperator("*");
+    } else {
+      setResult(result * displayToScreen);
+      setDisplayToScreen("0");
+      setOperator("*");
+    }
   }
 
   function memoryPlus(e) {
-    console.log(e.target.textContent);
+    setNumberInMemory(numberInMemory + displayToScreen);
+    setDisplayToScreen(0);
   }
 
   function memoryMinus(e) {
-    console.log(e.target.textContent);
+    setNumberInMemory(numberInMemory - displayToScreen);
+    setDisplayToScreen(0);
   }
 
   function memoryRead(e) {
-    console.log(e.target.textContent);
+    setDisplayToScreen(numberInMemory);
   }
 
   function memoryClear(e) {
-    console.log(e.target.textContent);
+    setNumberInMemory(0);
+    setDisplayToScreen(0);
   }
 
   function equalResult(e) {
@@ -150,7 +145,10 @@ function App() {
   }
 
   function commaNumber(e) {
-    console.log(e.target.textContent);
+    if (displayToScreen.toString().indexOf(".") === -1) {
+      let value = e.target.textContent;
+      setDisplayToScreen(displayToScreen + value);
+    }
   }
 }
 
