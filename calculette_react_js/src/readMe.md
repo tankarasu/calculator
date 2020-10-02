@@ -1,0 +1,3 @@
+-remplacer Eval()
+-Ajout fonctions Clear et BackSpace
+-gerer les floats
