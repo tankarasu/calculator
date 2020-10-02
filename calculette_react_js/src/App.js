@@ -72,7 +72,7 @@ function App() {
     console.log(displayToScreen.length);
   }
 
-  function addNumber(e) {
+  function addNumber() {
     if (firstOperand) {
       firstOperand = false;
       setResult(displayToScreen);
@@ -85,16 +85,42 @@ function App() {
     }
   }
 
-  function substractNumber(e) {
-    console.log(e.target.textContent);
+  function substractNumber() {
+    if (firstOperand) {
+      firstOperand = false;
+      setResult(displayToScreen);
+      setDisplayToScreen("0");
+      setOperator("-");
+    } else {
+      setResult(result - displayToScreen);
+      setDisplayToScreen("0");
+      setOperator("-");
+    }
   }
 
-  function divideNumber(e) {
-    console.log(e.target.textContent);
+  function divideNumber() {
+    if (firstOperand) {
+      firstOperand = false;
+      setResult(displayToScreen);
+      setDisplayToScreen("0");
+      setOperator("/");
+    } else {
+      setResult(result / displayToScreen);
+      setDisplayToScreen("0");
+      setOperator("/");
+    }
   }
 
-  function multiplyNumber(e) {
-    console.log(e.target.textContent);
+  function multiplyNumber(e) {if (firstOperand) {
+    firstOperand = false;
+    setResult(displayToScreen);
+    setDisplayToScreen("0");
+    setOperator("*");
+  } else {
+    setResult(result * displayToScreen);
+    setDisplayToScreen("0");
+    setOperator("*");
+  }
   }
 
   function memoryPlus(e) {
